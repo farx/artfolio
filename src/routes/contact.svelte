@@ -5,7 +5,7 @@
 		const { slug } = page.params;
 
 		return Prismic.getApi(process.env.SAPPER_APP_PRISMIC_API).then(function(api) {  return api.query(
-			Prismic.Predicates.at('document.type', 'about'),
+			Prismic.Predicates.at('document.type', 'contact'),
 		);
 		}).then(function(response) {
 			// response is the response object, response.results holds the documents

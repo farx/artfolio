@@ -4,22 +4,44 @@
 
 <style>
  .navbar {
-	 background-color : rgba(123,123,123,0.6)
+    background-color : rgba(255,255,255,0.6)
  }
+
+ .btn {
+    color: #3d4720;
+    font-size: 1.5em;
+    font-style: italic;
+ }
+
+ .navwrapper {
+    position:absolute;
+    width: 100%;
+    top: 0;
+ }
+
+ .main-link {
+    color: #cfefff !important;
+    font-size: 1.7em;
+    line-height: 1.5;
+    letter-spacing: .2rem;
+ }
+
 </style>
 
-<header class="navbar">
-	<section class="navbar-section">
-		<a class="btn btn-link" rel="prefetch" aria-current="{segment === undefined ? 'page' : undefined}" href="projects">projects</a>
-		<a class="btn btn-link" rel="prefetch" aria-current="{segment === 'about' ? 'page' : undefined}" href="journal">journal</a>
-	</section>
-	{#if segment !== undefined}
-	<section class="navbar-center">
-		<a class="btn btn-link" aria-current="{segment === undefined ? 'page' : undefined}" href=".">inga</a>
-	</section>
-	{/if}
-	<section class="navbar-section">
-		<a class="btn btn-link" aria-current="{segment === 'about' ? 'page' : undefined}" href="about">about</a>
-		<a class="btn btn-link" aria-current="{segment === 'contact' ? 'page' : undefined}" href="contact">contact</a>
-	</section>
-</header>
+<div class="navwrapper">
+    <header class="navbar">
+        <section class="navbar-section">
+            <a class="btn btn-link col-5" rel="prefetch" aria-current="{segment === 'projects' ? 'page' : undefined}" href="projects">projects</a>
+            <a class="btn btn-link col-5" rel="prefetch" aria-current="{segment === 'journal' ? 'page' : undefined}" href="journal">journal</a>
+        </section>
+        {#if segment !== undefined}
+        <section class="navbar-center">
+            <a class="btn btn-link main-link" aria-current="{segment === undefined ? 'page' : undefined}" href=".">inga</a>
+        </section>
+        {/if}
+        <section class="navbar-section">
+            <a class="btn btn-link col-5" aria-current="{segment === 'about' ? 'page' : undefined}" href="about">about</a>
+            <a class="btn btn-link col-5" aria-current="{segment === 'contact' ? 'page' : undefined}" href="contact">contact</a>
+        </section>
+    </header>
+</div>

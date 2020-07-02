@@ -21,43 +21,37 @@
 	h1, p {
 		text-align: center;
 		margin: 0 auto;
-		color: white;
 	}
 
-	h1 {
-		font-size: 2.8em;
-		text-transform: uppercase;
-		font-weight: 70;
-		margin: 0 0 0.5em 0;
+	.title {
+		font-size: 10em;
+		letter-spacing: .6rem;
+		font-style: italic;
 	}
 
-	img {
-		position: absolute;
-		left: 0;
-		top: 0;
-		margin: 0;
-		min-width: 100%;
-		min-height: 100%;
-		z-index: -1;
+	.subtitle {
+		font-size: 1.5em;
+		margin: 0 0 -3em 0;
+		letter-spacing: .2rem;
+		font-style: italic;
 	}
 
-	p {
-		margin: 1em auto;
-	}
+ .cover {
+		background-image: var(--image-url);
+		background-position: center 0;
+ }
 
-	@media (min-width: 480px) {
-		h1 {
-			font-size: 4em;
-		}
-	}
 </style>
 
 <svelte:head>
 	<title>{ page.data.title[0].text }</title>
 </svelte:head>
 
-<img alt={ page.data.splash.alt } src={ page.data.splash.url }>
+<content style="--color1: { page.data.main_color }; --color2: { page.data.secondary_color }; --color3: { page.data.tertiary_color } ">
+	<div class="cover" style="--image-url: url({ page.data.splash.url })">
 
-<h1>{ page.data.title[0].text }</h1>
+	<p class="subtitle">{ page.data.description[0].text }</p>
+	<h1 class="title">{ page.data.title[0].text }</h1>
 
-<p><strong>{ page.data.description[0].text }</strong></p>
+	</div>
+</content>
