@@ -21,17 +21,18 @@
 <style>
 
  content {
-
 	 padding-top: 4em;
  }
  .card {
 	width: 16em;
 	height: 16em;
 	 background-color: gray;
+	 margin-bottom: 2em;
 	background-image: var(--preview-photo-1-url);
 	background-position: center 0;
 	background-size: cover;
 	transition: background-image 1s ease-in-out;
+	 color: #a7562b !important;
  }
  .card:hover {
 	background-image: var(--preview-photo-2-url);
