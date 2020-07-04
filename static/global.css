@@ -1,6 +1,6 @@
 body {
 	margin: 0;
-	font-family: Poison, sans-serif;
+	font-family: Poison, sans-serif !important;
 	font-size: 14px;
 	line-height: 1.5;
 }
@@ -17,6 +17,7 @@ content {
 	background-color: #140b05 ;
     color: #e6d6c6;
     min-height: 100vh;
+    padding-bottom: 8em;
 }
 
 .btn-link {
@@ -40,6 +41,10 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
 	font-size: 2em;
 }
+
+ p {
+	 font-size: 1.5em;
+ }
 
 .block-img {
 	text-align: center;
@@ -67,7 +72,7 @@ code {
 	border-radius: 2px;
 }
 
-@media (min-width: 400px) {
+@media (min-width: 500px) {
 	body {
 		font-size: 16px;
 	}
@@ -75,63 +80,60 @@ code {
 
 @font-face {
     font-family: "Zeit Light";
-    src: url("/static/Zeit-Light.otf") format("opentype"),
+    src: url("Zeit-Light.otf") format("opentype"),
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: "Happy Time";
-    src: url("/static/HappyTime.otf") format("opentype"),
+    src: url("HappyTime.otf") format("opentype"),
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: "Prida01";
-    src: url("/static/Prida01.otf") format("opentype"),
+    src: url("Prida01.otf") format("opentype"),
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: "Poison";
-    src: url("/static/Poison-Regular.otf") format("opentype"),
+    src: url("Poison-Regular.otf");
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: "Ahellya";
-    src: url("/static/ahellya.ttf") format("truetype"),
-    font-weight: normal;
-    font-style: normal;
+    src: url("ahellya.ttf");
 }
 
 @font-face {
     font-family: "Ahellya";
-    src: url("/static/ahellya-italic.ttf") format("truetype"),
-    font-weight: normal;
+    src: url("ahellya-italic.ttf");
     font-style: italic;
 }
 
 @font-face {
     font-family: "Livia Medium";
-    src: url("/static/Livia Medium.ttf") format("truetype"),
+    src: url("Livia Medium.ttf") format("truetype"),
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: "Typography Times";
-    src: url("/static/Typography Times Regular.ttf") format("truetype"),
+    src: url("Typography Times Regular.ttf") format("truetype"),
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: "Thryromanes";
-    src: url("/static/thryn___.ttf") format("truetype"),
+    src: url("thryn___.ttf") format("truetype"),
     font-weight: normal;
     font-style: normal;
 }

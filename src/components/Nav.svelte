@@ -9,8 +9,8 @@
 
  .btn {
     color: #3d4720;
-    font-size: 1.5em;
-    font-style: italic;
+    font-size: 2em;
+    font-variant: small-caps;
  }
  .navwrapper {
     position:absolute;
@@ -23,15 +23,17 @@
     font-size: 1.7em;
     line-height: 1.5;
     letter-spacing: .2rem;
+    font-variant: normal;
+    font-style: italic;
  }
 
  @media (max-width: 600px) {
     .btn {
-        font-size: 1em;
+        font-size: 1.2em;
     }
     .main-link {
         font-size: 1.3em;
-    line-height: 2.1;
+        line-height: 2.1;
     }
  }
 </style>
@@ -43,7 +45,7 @@
             <a class="btn btn-link col-6" rel="prefetch" aria-current="{segment === 'journal' ? 'page' : undefined}" href="journal">journal</a>
         </section>
         {#if segment !== undefined}
-        <section class="navbar-center col-2">
+        <section class="navbar-center">
             <a class="btn btn-link main-link" aria-current="{segment === undefined ? 'page' : undefined}" href=".">inga</a>
         </section>
         {/if}

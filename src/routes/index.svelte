@@ -15,31 +15,49 @@
 
 <script>
 	export let page;
+
+
 </script>
 
 <style>
-	h1, p {
+	.title-wrapper {
 		text-align: center;
-		margin: 0 auto;
+		margin: 4em auto;
 	}
 
 	.title {
-		font-size: 10em;
-		letter-spacing: .6rem;
+		font-size: 12em;
+		letter-spacing: .2em;
 		font-style: italic;
+		margin-top: -0.48em;
 	}
 
 	.subtitle {
 		font-size: 1.5em;
-		margin: 0 0 -3em 0;
-		letter-spacing: .2rem;
+		letter-spacing: .40em;
 		font-style: italic;
 	}
 
- .cover {
+	.cover {
+		background-size: cover;
 		background-image: var(--image-url);
-		background-position: center 0;
- }
+		background-position: 0 0;
+	}
+
+	@media (max-width: 500px) {
+		.title {
+			font-size: 10em;
+			letter-spacing: .1em;
+		}
+
+		.subtitle {
+			font-size: 1.3em;
+			letter-spacing: .24em;
+		}
+		.cover {
+			background-position: 20% 0;
+		}
+	}
 
 </style>
 
@@ -50,8 +68,10 @@
 <content style="--color1: { page.data.main_color }; --color2: { page.data.secondary_color }; --color3: { page.data.tertiary_color } ">
 	<div class="cover" style="--image-url: url({ page.data.splash.url })">
 
-	<p class="subtitle">{ page.data.description[0].text }</p>
-	<h1 class="title">{ page.data.title[0].text }</h1>
+	<div class="title-wrapper">
+		<h2 class="subtitle">{ page.data.description[0].text }</h2>
+		<h1 class="title">{ page.data.title[0].text }</h1>
+	</div>
 
 	</div>
 </content>
