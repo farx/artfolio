@@ -2,20 +2,37 @@
 	import Prismic from 'prismic-javascript';
 
 	export async function preload(page, session) {
-		const { slug } = page.params;
-
 		return Prismic.getApi(process.env.SAPPER_APP_PRISMIC_API).then(function(api) {  return api.query(
 			Prismic.Predicates.at('document.type', 'homepage'),
 		);
 		}).then(function(response) {
-			return { page : response.results[0] };
+			const page = response.results[0];
+
+			return {
+				title : page ? page.data.title[0].text : "untitled",
+				subtitle : page ? page.data.subtitle[0].text : "unsubtitled",
+				splash : page ? page.data.splash.url : "",
+			};
 		});
 	}
 </script>
 
 <script>
-	export let page;
+	export let title;
+	export let subtitle;
+	export let splash;
 
+
+	Prismic.getApi(process.env.SAPPER_APP_PRISMIC_API).then(function(api) {  return api.query(
+		Prismic.Predicates.at('document.type', 'homepage'),
+	);
+	}).then(function(response) {
+		const page = response.results[0];
+
+		title = page ? page.data.title[0].text : "untitled";
+		subtitle = page ? page.data.subtitle[0].text : "unsubtitled";
+		splash = page ? page.data.splash.url : "";
+	});
 
 </script>
 
@@ -62,16 +79,14 @@
 </style>
 
 <svelte:head>
-	<title>{ page.data.title[0].text }</title>
+	<title>{ title }</title>
 </svelte:head>
 
-<content style="--color1: { page.data.main_color }; --color2: { page.data.secondary_color }; --color3: { page.data.tertiary_color } ">
-	<div class="cover" style="--image-url: url({ page.data.splash.url })">
-
-	<div class="title-wrapper">
-		<h2 class="subtitle">{ page.data.description[0].text }</h2>
-		<h1 class="title">{ page.data.title[0].text }</h1>
-	</div>
-
+<content>
+	<div class="cover" style="--image-url: url({ splash })">
+		<div class="title-wrapper">
+			<h2 class="subtitle">{ subtitle }</h2>
+			<h1 class="title">{ title }</h1>
+		</div>
 	</div>
 </content>

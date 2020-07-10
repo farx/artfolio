@@ -4,7 +4,7 @@
 		const { slug } = page.params;
 
 		return Prismic.getApi(process.env.SAPPER_APP_PRISMIC_API).then(function(api) {  return api.query(
-			[ Prismic.Predicates.at('my.project.uid', slug) ]
+			[ Prismic.Predicates.at('my.post.uid', slug) ]
 		);
 		}).then(function(response) {
 			return { post : response.results[0], slug : slug };
@@ -18,7 +18,7 @@
 	export let post;
 	export let slug;
 	Prismic.getApi(process.env.SAPPER_APP_PRISMIC_API).then(function(api) {  return api.query(
-		[ Prismic.Predicates.at('my.project.uid', slug) ]
+		[ Prismic.Predicates.at('my.post.uid', slug) ]
 	);
 	}).then(function(response) {
 		post = response.results[0];

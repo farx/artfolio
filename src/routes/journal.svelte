@@ -4,7 +4,7 @@
 	export async function preload(page, session) {
 		return Prismic.getApi(process.env.SAPPER_APP_PRISMIC_API).then(function(api) {  return api.query(
 			[ Prismic.Predicates.at('document.type', 'project'),
-			  Prismic.Predicates.at('my.project.post_type', 'journal') ],
+			  Prismic.Predicates.at('my.post.post_type', 'journal') ],
 			{ fetch : [  'project.title', 'project.date', 'project.preview_photo_1', 'project.preview_photo_2' ],
 				orderings : '[my.project.order_score desc]' }
 		);
@@ -22,7 +22,7 @@
 
 	Prismic.getApi(process.env.SAPPER_APP_PRISMIC_API).then(function(api) {  return api.query(
 		[ Prismic.Predicates.at('document.type', 'project'),
-			Prismic.Predicates.at('my.project.post_type', 'journal') ],
+			Prismic.Predicates.at('my.post.post_type', 'journal') ],
 			{ fetch : [  'project.title', 'project.date', 'project.preview_photo_1', 'project.preview_photo_2' ],
 				orderings : '[my.project.order_score desc]' }
 	);
