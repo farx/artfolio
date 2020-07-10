@@ -3,7 +3,9 @@
 
 <style>
  .footer {
-     background-color: #a7562b;
+	background-color: #140b05 ;
+    color: #e6d6c6;
+     font-size: 0.8em;
  }
 
 

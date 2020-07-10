@@ -22,14 +22,14 @@
 <style>
 	.title-wrapper {
 		text-align: center;
-		margin: 4em auto;
+		margin-top: 25vh;
 	}
 
 	.title {
 		font-size: 12em;
 		letter-spacing: .2em;
 		font-style: italic;
-		margin-top: -0.48em;
+		margin-top: -0.46em;
 	}
 
 	.subtitle {
@@ -44,7 +44,7 @@
 		background-position: 0 0;
 	}
 
-	@media (max-width: 500px) {
+	@media (max-width: 600px) {
 		.title {
 			font-size: 10em;
 			letter-spacing: .1em;

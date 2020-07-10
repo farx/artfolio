@@ -7,7 +7,7 @@
 			[ Prismic.Predicates.at('my.project.uid', slug) ]
 		);
 		}).then(function(response) {
-			return { post : response.results[0] };
+			return { post : response.results[0], slug : slug };
 		});
 	};
 </script>
@@ -16,6 +16,7 @@
 	import PrismicDOM from 'prismic-dom';
 	import { linkResolver } from '../_linkresolver.js';
 	export let post;
+	export let slug;
 	Prismic.getApi(process.env.SAPPER_APP_PRISMIC_API).then(function(api) {  return api.query(
 		[ Prismic.Predicates.at('my.project.uid', slug) ]
 	);
@@ -32,10 +33,12 @@
 
  .title {
 	 font-size: 4em;
+	 font-style: italic;
+	 text-align: center;
  }
 
  .subtitle {
-	 margin-bottom: 8em;
+	 margin-bottom: 4em;
  }
 
  .cover {
