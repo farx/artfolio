@@ -27,15 +27,36 @@
     font-style: italic;
  }
 
+ @media (max-width: 700px) {
+    .btn {
+        font-size: 1.4em;
+    }
+    .main-link {
+        font-size: 1.6em;
+    line-height: 1.7;
+    }
+ }
+
  @media (max-width: 600px) {
     .btn {
         font-size: 1.2em;
     }
     .main-link {
         font-size: 1.3em;
-        line-height: 2.1;
+    line-height: 2.3;
     }
  }
+
+ @media (max-width: 500px) {
+    .btn {
+        font-size: 1em;
+    }
+    .main-link {
+        font-size: 1.1em;
+    line-height: 2.8;
+    }
+ }
+
 </style>
 
 <div class="navwrapper">
