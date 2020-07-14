@@ -27,26 +27,23 @@
 </script>
 
 <style>
- content {
-		background: var(--background-color) !important;
-		color: var(--text-color) !important;
- }
-
+	content {
+			background: var(--background-color);
+			color: var(--text-color) !important;
+	}
 
 	.cover {
 		background-size: cover;
 		background-image: var(--image-url);
 	}
-
-
 </style>
 
 <svelte:head>
 	<title>{ page.data.title[0].text }</title>
 </svelte:head>
 
-<content class='columns' style="--background-color: { page.data.background_color ? page.data.background_color : '#140b05' }; --text-color: { page.data.text_color ? page.data.text_color :  '#e6d6c6' }">
-	<div class='column col-10 col-mx-auto cover' style="--image-url: url({ page.data.splash ? page.data.splash.url : "" })">
+<content class='columns cover' style="--image-url: url({ page.data.splash ? page.data.splash.url : '' }); --background-color: { page.data.background_color ? page.data.background_color : '#140b05' }; --text-color: { page.data.text_color ? page.data.text_color :  '#e6d6c6' }">
+	<div class='column col-10 col-mx-auto'>
 		<h1 class='mt-2'>{ page.data.title[0].text }</h1>
 		<h2 class='mt-2'>{ page.data.subtitle[0] ? page.data.subtitle[0].text : "" }</h2>
 	</div>

@@ -5,6 +5,7 @@
 	export let segment;
 </script>
 
+
 <Nav { segment } />
 
 <main>
