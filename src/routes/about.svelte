@@ -1,6 +1,7 @@
 <script context="module">
 	import Prismic from 'prismic-javascript';
 
+
 	export async function preload(page, session) {
 		const { slug } = page.params;
 
@@ -8,7 +9,6 @@
 			Prismic.Predicates.at('document.type', 'about'),
 		);
 		}).then(function(response) {
-			// response is the response object, response.results holds the documents
 			return { page : response.results[0] };
 		});
 	}
@@ -18,15 +18,30 @@
 	import PrismicDOM from 'prismic-dom';
 	import { linkResolver } from './_linkresolver.js';
 
+	import { lang } from "../routes/_settings.js";
+	import { onDestroy } from "svelte";
+
 	export let page;
 
 	Prismic.getApi(process.env.SAPPER_APP_PRISMIC_API).then(function(api) {  return api.query(
 		Prismic.Predicates.at('document.type', 'about'),
+		{ lang : $lang.code }
 	);
 	}).then(function(response) {
 		page = response.results[0];
 	});
 
+	const unsubscribe = lang.subscribe(value => {
+		Prismic.getApi(process.env.SAPPER_APP_PRISMIC_API).then(function(api) {  return api.query(
+			Prismic.Predicates.at('document.type', 'about'),
+			{ lang : $lang.code }
+		);
+		}).then(function(response) {
+			page = response.results[0];
+		});
+	});
+
+	onDestroy(() => unsubscribe);
 </script>
 
 <style>
