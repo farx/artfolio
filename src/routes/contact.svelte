@@ -8,7 +8,6 @@
 			Prismic.Predicates.at('document.type', 'contact'),
 		);
 		}).then(function(response) {
-			// response is the response object, response.results holds the documents
 			return { page : response.results[0] };
 		});
 	}
@@ -17,13 +16,32 @@
 <script>
 	import PrismicDOM from 'prismic-dom';
 	import { linkResolver } from './_linkresolver.js';
+
+	import { lang } from "../routes/_settings.js";
+	import { onDestroy } from "svelte";
 	export let page;
+
 	Prismic.getApi(process.env.SAPPER_APP_PRISMIC_API).then(function(api) {  return api.query(
 		Prismic.Predicates.at('document.type', 'contact'),
+		{ lang : $lang.code }
 	);
 	}).then(function(response) {
 		page = response.results[0];
 	});
+
+	const unsubscribe = lang.subscribe(value => {
+		if (page.lang !== value.code) {
+			Prismic.getApi(process.env.SAPPER_APP_PRISMIC_API).then(function(api) {  return api.query(
+				Prismic.Predicates.at('document.type', 'contact'),
+				{ lang : $lang.code }
+			);
+			}).then(function(response) {
+				page = response.results[0];
+			});
+		}
+	});
+
+	onDestroy(() => unsubscribe);
 </script>
 
 <style>

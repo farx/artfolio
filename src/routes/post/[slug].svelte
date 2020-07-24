@@ -1,28 +1,50 @@
 <script context="module">
 	import Prismic from 'prismic-javascript';
-	export async function preload(page, session) {
-		const { slug } = page.params;
 
-		return Prismic.getApi(process.env.SAPPER_APP_PRISMIC_API).then(function(api) {  return api.query(
-			[ Prismic.Predicates.at('my.post.uid', slug) ]
-		);
-		}).then(function(response) {
-			return { post : response.results[0], slug : slug };
-		});
-	};
+	export async function preload(page, session) {
+        const { slug } = page.params;
+
+        return Prismic.getApi(process.env.SAPPER_APP_PRISMIC_API).then(function(api) {  return api.query(
+            Prismic.Predicates.at('my.post.uid', slug),
+            { lang: '*' }
+        );
+        }).then(function(response) {
+            return { post : response.results[0], slug :slug };
+        });
+	}
 </script>
 
 <script>
 	import PrismicDOM from 'prismic-dom';
+    import { onDestroy } from 'svelte';
 	import { linkResolver } from '../_linkresolver.js';
 	export let post;
 	export let slug;
-	Prismic.getApi(process.env.SAPPER_APP_PRISMIC_API).then(function(api) {  return api.query(
-		[ Prismic.Predicates.at('my.post.uid', slug) ]
-	);
-	}).then(function(response) {
-		post = response.results[0];
+	import { lang, locales } from "../_settings.js";
+
+    import { goto } from '@sapper/app';
+
+    lang.set(Object.values(locales).find(l => l.code === post.lang));
+
+	const unsubscribe = lang.subscribe(value => {
+        if (post.lang !== value.code) {
+            let altpost = post.alternate_languages.find(p => p.lang === $lang.code);
+            if (altpost) {
+                goto("/post/" + altpost.uid);
+            }
+        }
 	});
+
+    onDestroy(() => unsubscribe);
+
+	//Prismic.getApi(process.env.SAPPER_APP_PRISMIC_API).then(function(api) { return api.query(
+		 //Prismic.Predicates.at('my.post.uid', slug),
+          //{ lang: $lang.code }
+	//);
+	//}).then(function(response) {
+		//post = response.results[0];
+	//});
+
 </script>
 
 <style>
