@@ -42,7 +42,7 @@
 			[ Prismic.Predicates.at('document.type', 'post'),
 				Prismic.Predicates.at('my.post.post_type', 'project') ],
 				{ fetch : [  'post.title', 'post.date', 'post.preview_photo_1', 'post.preview_photo_2' ],
-				orderings : '[my.project.order_score desc]',
+				orderings : '[my.post.order_score desc]',
 				lang : $lang.code }
 		);
 		}).then(function(response) {
