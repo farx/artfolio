@@ -19,7 +19,6 @@
     import { onDestroy } from 'svelte';
 	import { linkResolver } from '../_linkresolver.js';
 	export let post;
-	export let slug;
 	import { lang, locales } from "../_settings.js";
 
     import { goto } from '@sapper/app';
