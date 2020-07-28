@@ -44,9 +44,12 @@
         bottom: 0;
         width: 100%;
         text-align: left;
-        margin-left: 2em;
+        padding: 0 1em;
         text-transform: uppercase;
         font-size: 0.5em;
+        letter-spacing: .3em;
+        line-height: .1em;
+        color: var(--image-text-color);
 
     }
 
@@ -65,7 +68,7 @@
     <div class="block-img" >
         <span class="img-wrapper" on:mouseover={ toggleImageTextHover } on:click={ toggleImageText } on:mouseout={ toggleImageTextHover } >
             {#if (visible || hover) }
-                <span class="alt-text"  style="--text-color: { content.primary.text_color ? content.primary.text_color :  text_color }" transition:slide>
+                <span class="alt-text"  style="--image-text-color: { content.primary.image_text_color ? content.primary.image_text_color :  text_color }" transition:slide>
                     {@html PrismicDOM.RichText.asHtml(content.primary.credits, linkResolver) }
                 </span>
             {/if}
