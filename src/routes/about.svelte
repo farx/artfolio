@@ -7,6 +7,7 @@
 
 		return Prismic.getApi(process.env.SAPPER_APP_PRISMIC_API).then(function(api) {  return api.query(
 			Prismic.Predicates.at('document.type', 'about'),
+			{ lang : 'en-gb' }
 		);
 		}).then(function(response) {
 			return { page : response.results[0] };
@@ -18,30 +19,21 @@
 	import PrismicDOM from 'prismic-dom';
 	import { linkResolver } from './_linkresolver.js';
 
-	import { lang } from "../routes/_settings.js";
-	import { onDestroy } from "svelte";
+	import { lang, locales } from "../routes/_settings.js";
+	import LangSelector from "../components/LangSelector.svelte"
 
 	export let page;
 
-	Prismic.getApi(process.env.SAPPER_APP_PRISMIC_API).then(function(api) {  return api.query(
-		Prismic.Predicates.at('document.type', 'about'),
-		{ lang : $lang.code }
-	);
-	}).then(function(response) {
-		page = response.results[0];
+	import { afterUpdate } from 'svelte';
+
+	let translations = [];
+	translations = [{ url : "om", code : "sv" }];
+	afterUpdate(() => {
+		lang.update((old) => { return { current : locales["en-gb"], translations : [{ url : "om", code : "sv" }]} })
+		translations = [{ url : "om", code : "sv" }];
 	});
 
-	const unsubscribe = lang.subscribe(value => {
-		Prismic.getApi(process.env.SAPPER_APP_PRISMIC_API).then(function(api) {  return api.query(
-			Prismic.Predicates.at('document.type', 'about'),
-			{ lang : $lang.code }
-		);
-		}).then(function(response) {
-			page = response.results[0];
-		});
-	});
 
-	onDestroy(() => unsubscribe);
 </script>
 
 <style>
@@ -75,6 +67,7 @@
 	<title>{ page.data.title[0].text }</title>
 </svelte:head>
 
+<LangSelector { translations } />
 <content class='columns' style="--background-color: { page.data.background_color ? page.data.background_color : '#140b05' }; --text-color: { page.data.text_color ? page.data.text_color :  '#e6d6c6' }">
 	<div class='cover' style="--image-url: url({ page.data.splash ? page.data.splash.url : ''});">
 		<div class='column col-10 col-mx-auto titlecolumn'>

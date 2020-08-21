@@ -1,10 +1,8 @@
-<script context="module">
-</script>
-
 <script>
 	export let segment;
 
-    import { lang, toggleLang } from "../routes/_settings.js";
+    import LangSelector from "./LangSelector.svelte"
+    import { lang } from "../routes/_settings.js";
 
 </script>
 
@@ -31,17 +29,6 @@
     letter-spacing: .2rem;
     font-variant: normal;
     font-style: italic;
- }
-
- .langselector {
-     float:right;
-     padding: 0 1em;
-     background-color: rgba(255,255,255,0.6);
- }
-
- .langselector span {
-     font-size: 0.8em;
-     line-height: 1.8;
  }
 
  @media (max-width: 700px) {
@@ -79,8 +66,8 @@
 <div class="navwrapper">
     <header class="navbar">
         <section class="navbar-section col-5">
-            <a class="btn btn-link col-6" rel="prefetch" aria-current="{segment === 'projects' ? 'page' : undefined}" href="projects">{ $lang.pages.projects.name }</a>
-            <a class="btn btn-link col-6" rel="prefetch" aria-current="{segment === 'journal' ? 'page' : undefined}" href="journal">{ $lang.pages.journal.name }</a>
+            <a class="btn btn-link col-6" rel="prefetch" aria-current="{segment === 'projects' ? 'page' : undefined}" href="/{ $lang.current.pages.projects.name }">{ $lang.current.pages.projects.name }</a>
+            <a class="btn btn-link col-6" rel="prefetch" aria-current="{segment === 'journal' ? 'page' : undefined}" href="/{ $lang.current.pages.journal.name }">{ $lang.current.pages.journal.name }</a>
         </section>
         {#if segment !== undefined}
         <section class="navbar-center">
@@ -88,13 +75,8 @@
         </section>
         {/if}
         <section class="navbar-section col-5">
-            <a class="btn btn-link col-6" aria-current="{segment === 'about' ? 'page' : undefined}" href="about">{ $lang.pages.about.name }</a>
-            <a class="btn btn-link col-6" aria-current="{segment === 'contact' ? 'page' : undefined}" href="contact">{ $lang.pages.contact.name }</a>
+            <a class="btn btn-link col-6" aria-current="{segment === 'about' ? 'page' : undefined}" href="/{ $lang.current.pages.about.name }">{ $lang.current.pages.about.name }</a>
+            <a class="btn btn-link col-6" aria-current="{segment === 'contact' ? 'page' : undefined}" href="/{ $lang.current.pages.contact.name }">{ $lang.current.pages.contact.name }</a>
         </section>
     </header>
-    <div class="langselector">
-            <span on:click={ toggleLang } style="{ $lang.code === 'sv-se' ? 'font-weight:bold;' : '' }" >se</span>
-            <span>/</span>
-            <span on:click={ toggleLang } style="{ $lang.code === 'en-gb' ? 'font-weight:bold;' : '' }" >en</span>
-    </div>
 </div>

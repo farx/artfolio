@@ -12,6 +12,6 @@
 
 <div class="columns footer">
     <div class='column col-8 text-center col-mx-auto'>
-        <span>{ $lang.copyright }</span>
+        <span>{ $lang.current.copyright }</span>
     </div>
 </div>

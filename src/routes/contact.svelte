@@ -6,6 +6,7 @@
 
 		return Prismic.getApi(process.env.SAPPER_APP_PRISMIC_API).then(function(api) {  return api.query(
 			Prismic.Predicates.at('document.type', 'contact'),
+			{ lang : "en-gb" }
 		);
 		}).then(function(response) {
 			return { page : response.results[0] };
@@ -17,31 +18,20 @@
 	import PrismicDOM from 'prismic-dom';
 	import { linkResolver } from './_linkresolver.js';
 
-	import { lang } from "../routes/_settings.js";
-	import { onDestroy } from "svelte";
 	export let page;
 
-	Prismic.getApi(process.env.SAPPER_APP_PRISMIC_API).then(function(api) {  return api.query(
-		Prismic.Predicates.at('document.type', 'contact'),
-		{ lang : $lang.code }
-	);
-	}).then(function(response) {
-		page = response.results[0];
+	import { lang, locales } from "../routes/_settings.js";
+	import LangSelector from "../components/LangSelector.svelte"
+
+	import { afterUpdate } from 'svelte';
+
+	let translations = [];
+	translations = [{ url : "kontakt", code : "sv" }];
+	afterUpdate(() => {
+		lang.update((old) => { return { current : locales["en-gb"], translations : [{ url : "kontakt", code : "sv" }]} })
+		translations = [{ url : "kontakt", code : "sv" }];
 	});
 
-	const unsubscribe = lang.subscribe(value => {
-		if (page.lang !== value.code) {
-			Prismic.getApi(process.env.SAPPER_APP_PRISMIC_API).then(function(api) {  return api.query(
-				Prismic.Predicates.at('document.type', 'contact'),
-				{ lang : $lang.code }
-			);
-			}).then(function(response) {
-				page = response.results[0];
-			});
-		}
-	});
-
-	onDestroy(() => unsubscribe);
 </script>
 
 <style>
@@ -60,6 +50,7 @@
 	<title>{ page.data.title[0].text }</title>
 </svelte:head>
 
+<LangSelector { translations } />
 <content class='columns cover' style="--image-url: url({ page.data.splash ? page.data.splash.url : '' }); --background-color: { page.data.background_color ? page.data.background_color : '#140b05' }; --text-color: { page.data.text_color ? page.data.text_color :  '#e6d6c6' }">
 	<div class='column col-10 col-mx-auto'>
 		<h1 class='mt-2'>{ page.data.title[0].text }</h1>
