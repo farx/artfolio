@@ -23,17 +23,6 @@
 	export let splash;
 
 
-	Prismic.getApi(process.env.SAPPER_APP_PRISMIC_API).then(function(api) {  return api.query(
-		Prismic.Predicates.at('document.type', 'homepage'),
-	);
-	}).then(function(response) {
-		const page = response.results[0];
-
-		title = page ? page.data.title[0].text : "untitled";
-		subtitle = page ? page.data.subtitle[0].text : "unsubtitled";
-		splash = page ? page.data.splash.url : "";
-	});
-
 </script>
 
 <style>
