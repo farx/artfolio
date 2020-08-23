@@ -21,7 +21,7 @@
 	import { lang, locales } from "./_settings.js";
 	import Posts from "../components/Posts.svelte"
 
-	lang.update((old) => { return {current:locales["en-gb"],translations : [{ url : "blog", code : "sv" }]}})
+	lang.update((old) => { return {current:locales["en-gb"],translations : [{ url : "blogg", code : "sv" }]}})
 
 </script>
 
