@@ -15,48 +15,25 @@
 </script>
 
 <script>
-	import PrismicDOM from 'prismic-dom';
-	import { linkResolver } from './_linkresolver.js';
+export let page;
 
-	export let page;
+import { lang, locales } from "../routes/_settings.js";
 
-	import { lang, locales } from "../routes/_settings.js";
-	import LangSelector from "../components/LangSelector.svelte"
+import PageWithImage from "../components/PageWithImage.svelte"
 
-	import { afterUpdate } from 'svelte';
+import { afterUpdate } from 'svelte';
 
-	let translations = [];
+let translations = [];
+translations = [{ url : "kontakt", code : "sv" }];
+afterUpdate(() => {
+	lang.update((old) => { return { current : locales["en-gb"], translations : [{ url : "kontakt", code : "sv" }]} })
 	translations = [{ url : "kontakt", code : "sv" }];
-	afterUpdate(() => {
-		lang.update((old) => { return { current : locales["en-gb"], translations : [{ url : "kontakt", code : "sv" }]} })
-		translations = [{ url : "kontakt", code : "sv" }];
-	});
+});
 
 </script>
 
-<style>
-	content {
-			background: var(--background-color);
-			color: var(--text-color) !important;
-	}
-
-	.cover {
-		background-size: cover;
-		background-image: var(--image-url);
-	}
-</style>
-
 <svelte:head>
-	<title>{ page.data.title[0].text }</title>
+<title>{ page.data.title[0].text }</title>
 </svelte:head>
 
-<LangSelector { translations } />
-<content class='columns cover' style="--image-url: url({ page.data.splash ? page.data.splash.url : '' }); --background-color: { page.data.background_color ? page.data.background_color : '#140b05' }; --text-color: { page.data.text_color ? page.data.text_color :  '#e6d6c6' }">
-	<div class='column col-10 col-mx-auto'>
-		<h1 class='mt-2'>{ page.data.title[0].text }</h1>
-		<h2 class='mt-2'>{ page.data.subtitle[0] ? page.data.subtitle[0].text : "" }</h2>
-	</div>
-	<div class='column col-8 col-mx-auto'>
-		{@html PrismicDOM.RichText.asHtml(page.data.description, linkResolver) }
-	</div>
-</content>
+<PageWithImage { page } { translations }  />

@@ -7,7 +7,7 @@
 
 		return Prismic.getApi(process.env.SAPPER_APP_PRISMIC_API).then(function(api) {  return api.query(
 			Prismic.Predicates.at('document.type', 'about'),
-			{ lang : 'en-gb' }
+			{ lang : 'sv-se' }
 		);
 		}).then(function(response) {
 			return { page : response.results[0] };
@@ -18,24 +18,24 @@
 <script>
 	import Page from "../components/PageWithCoverImage.svelte"
 	import { lang, locales } from "../routes/_settings.js";
+	import LangSelector from "../components/LangSelector.svelte"
+
 	export let page;
 
 	import { afterUpdate } from 'svelte';
 
 	let translations = [];
-	translations = [{ url : "om", code : "sv" }];
+	translations = [{ url : "about", code : "en" }];
 	afterUpdate(() => {
-		lang.update((old) => { return { current : locales["en-gb"], translations : [{ url : "om", code : "sv" }]} })
-		translations = [{ url : "om", code : "sv" }];
+		lang.update((old) => { return { current : locales["sv-se"], translations : [{ url : "about", code : "en" }]} })
+		translations = [{ url : "about", code : "en" }];
 	});
 
 
 </script>
 
-
 <svelte:head>
 	<title>{ page.data.title[0].text }</title>
 </svelte:head>
-
 
 <Page { page } { translations } />

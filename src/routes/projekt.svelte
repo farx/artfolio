@@ -9,7 +9,7 @@
 			  Prismic.Predicates.at('my.post.post_type', 'project') ],
 			{ fetch : [  'post.title', 'post.date', 'post.preview_photo_1', 'post.preview_photo_2' ],
 			  orderings : '[my.post.order_score desc]',
-			  lang : 'en-gb' }
+			  lang : 'sv-se' }
 		);
 		}).then(function(response) {
 			return { posts : response.results };
@@ -20,22 +20,21 @@
 <script>
 	import Posts from '../components/Posts.svelte';
 
-	import { lang,locales } from "./_settings.js";
+	import { lang, locales } from "./_settings.js";
 	import { afterUpdate } from 'svelte';
 
 	let translations = [];
-	translations = [{ url : "projekt", code : "sv" }];
+	translations = [{ url : "projects", code : "en" }];
 	afterUpdate(() => {
-		lang.set({ current : locales["en-gb"],translations : [{ url : "projekt", code : "sv" }]} )
-		translations = [{ url : "projekt", code : "sv" }];
+		lang.set({ current : locales["sv-se"],translations : [{ url : "projects", code : "en" }]} )
+		translations = [{ url : "projects", code : "en" }];
 	});
 
 	export let posts;
- console.log(posts)
 </script>
 
 <svelte:head>
-	<title>Projects</title>
+	<title>Projekt</title>
 </svelte:head>
 
 <Posts { posts } { translations }/>

@@ -15,12 +15,11 @@
 		});
 	}
 </script>
+
 <script>
-	import PrismicDOM from 'prismic-dom';
-	import Post from '../components/Post.svelte';
 	export let posts;
 	import { lang, locales } from "./_settings.js";
-	import LangSelector from "../components/LangSelector.svelte"
+	import Posts from "../components/Posts.svelte"
 	import { afterUpdate } from 'svelte';
 
 	let translations = [];
@@ -32,26 +31,8 @@
 
 </script>
 
-
-<style>
-	content {
-		padding-top: 20vh;
-	}
-</style>
-
 <svelte:head>
 	<title>Journal</title>
 </svelte:head>
 
-<LangSelector { translations } />
-<content class='columns'>
-	<div class='column col-8 col-mx-auto'>
-		<div class='columns'>
-		{#each posts as post}
-			<Post { post } />
-		{:else}
-			<p class="column text-center">{ $lang.current.pages.journal.no_posts_blurb }</p>
-		{/each}
-		</div>
-	</div>
-</content>
+<Posts { posts } { translations }/>

@@ -52,7 +52,7 @@
 </script>
 
 <style>
- content {
+ .container {
 		background: var(--background-color) !important;
 		color: var(--text-color) !important;
  }
@@ -78,14 +78,18 @@
 
 
 <LangSelector { translations } />
-<content class='columns' style="--background-color: { background_color }; --text-color: { text_color }">
-	<div class='column col-10 col-mx-auto cover'>
-		<h1 class='title mt-2'>{ post.data.title[0].text }</h1>
-		<h2 class='subtitle mt-2'>{ post.data.subtitle[0].text }</h2>
-	</div>
-	<div class='column content col-mx-auto col-6 col-lg-8 col-md-10 col-sm-11'>
-        {#each post.data.body as content, i (content)}
-            <PostElement { content } { text_color }  />
-        {/each}
-	</div>
+<content style="--background-color: { background_color }; --text-color: { text_color }">
+    <div class='container'>
+        <div class='columns'>
+            <div class='column col-10 col-mx-auto cover'>
+                <h1 class='title mt-2'>{ post.data.title[0].text }</h1>
+                <h2 class='subtitle mt-2'>{ post.data.subtitle[0].text }</h2>
+            </div>
+            <div class='column content col-mx-auto col-6 col-lg-8 col-md-10 col-sm-11'>
+                {#each post.data.body as content, i (content)}
+                    <PostElement { content } { text_color }  />
+                {/each}
+            </div>
+        </div>
+    </div>
 </content>
