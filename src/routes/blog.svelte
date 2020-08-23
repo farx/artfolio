@@ -1,38 +1,35 @@
 <script context="module">
-
 	import Prismic from 'prismic-javascript';
 	import { get } from 'svelte/store';
 
 	export async function preload(page, session) {
 		return Prismic.getApi(process.env.SAPPER_APP_PRISMIC_API).then(function(api) {  return api.query(
 			[ Prismic.Predicates.at('document.type', 'post'),
-			  Prismic.Predicates.at('my.post.post_type', 'project') ],
+			  Prismic.Predicates.at('my.post.post_type', 'journal') ],
 			{ fetch : [  'post.title', 'post.date', 'post.preview_photo_1', 'post.preview_photo_2' ],
 			  orderings : '[my.post.order_score desc]',
-			  lang : 'en-gb' }
+			  lang : 'sv-se' }
 		);
 		}).then(function(response) {
 			return { posts : response.results };
 		});
 	}
 </script>
-
 <script>
-	import Posts from '../components/Posts.svelte';
+	export let posts;
+	import Posts from "../components/Posts.svelte"
 
-	import { lang,locales } from "./_settings.js";
+	import { lang, locales } from "./_settings.js";
 	import { afterUpdate } from 'svelte';
 
 	afterUpdate(() => {
-		lang.set({ current : locales["en-gb"],translations : [{ url : "projekt", code : "sv" }]} )
+		lang.update((old) => { return {current:locales["sv-se"],translations : [{ url : "journal", code : "en" }]}})
 	});
 
-	export let posts;
- console.log(posts)
 </script>
 
 <svelte:head>
-	<title>Projects</title>
+	<title>Blog</title>
 </svelte:head>
 
 <Posts { posts } />

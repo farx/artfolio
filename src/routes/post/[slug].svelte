@@ -1,45 +1,46 @@
 <script context="module">
 	import Prismic from 'prismic-javascript';
+    import { lang, locales } from "../_settings.js";
 
 	export async function preload(page, session) {
         const { slug } = page.params;
 
-        return Prismic.getApi(process.env.SAPPER_APP_PRISMIC_API).then(function(api) {  return api.query(
-            Prismic.Predicates.at('my.post.uid', slug),
-            { lang: '*' }
-        );
-        }).then(function(response) {
-            return { post : response.results[0] };
+        return Prismic.getApi(process.env.SAPPER_APP_PRISMIC_API)
+        .then((api) => {
+            return api.query(
+                Prismic.Predicates.at('my.post.uid', slug),
+                { lang: '*' }
+            );
+        })
+        .then((response) => {
+            let post = response.results[0];
+            return { post, lang };
         });
 	}
 </script>
 
 <script>
-    import { onDestroy } from 'svelte';
+    import { afterUpdate } from 'svelte';
 	export let post;
-	import { lang, locales } from "../_settings.js";
 	import PrismicDOM from 'prismic-dom';
 	import { linkResolver } from '../_linkresolver.js';
     import PostElement from "../../components/PostElement.svelte"
+    import LangSelector from "../../components/LangSelector.svelte"
 
     import { goto } from '@sapper/app';
 
     let text_color = post.data.text_color ? post.data.text_color : '#e6d6c6';
     let background_color = post.data.background_color ? post.data.background_color : '#140b05';
 
-    lang.set(Object.values(locales).find(l => l.code === post.lang));
-
-	const unsubscribe = lang.subscribe(value => {
-        if (post.lang !== value.code) {
-            let altpost = post.alternate_languages.find(p => p.lang === $lang.code);
-            if (altpost) {
-                goto("/post/" + altpost.uid);
-            }
-        }
-	});
-
-    onDestroy(() => unsubscribe);
-
+    let translations = [];
+    translations = post.alternate_languages.map(l => { return { url : "post/" + l.uid, code : l.lang.slice(0,2) }})
+    afterUpdate(() => {
+        translations = post.alternate_languages.map(l => { return { url : "post/" + l.uid, code : l.lang.slice(0,2) }})
+        lang.set({
+            current: locales[post.lang],
+            translations : post.alternate_languages.map(l => { return { url : "post/" + l.uid, code : l.lang.slice(0,2) }})
+        })
+    });
 	//Prismic.getApi(process.env.SAPPER_APP_PRISMIC_API).then(function(api) { return api.query(
 		 //Prismic.Predicates.at('my.post.uid', slug),
           //{ lang: $lang.code }
@@ -51,7 +52,7 @@
 </script>
 
 <style>
- content {
+ .container {
 		background: var(--background-color) !important;
 		color: var(--text-color) !important;
  }
@@ -75,17 +76,20 @@
 	<title>{post.data.title[0].text}</title>
 </svelte:head>
 
-<content class='columns' style="--background-color: { background_color }; --text-color: { text_color }">
-	<div class='column col-10 col-mx-auto cover'>
-		<h1 class='title mt-2'>{ post.data.title[0].text }</h1>
-		<h2 class='subtitle mt-2'>{ post.data.subtitle[0].text }</h2>
-	</div>
-	<!--//<div class='column content col-mx-auto col-6 col-lg-8 col-md-10 col-sm-11'>
-	//	{@html PrismicDOM.RichText.asHtml(post.data.content, linkResolver) }
-	//</div> -->
-	<div class='column content col-mx-auto col-6 col-lg-8 col-md-10 col-sm-11'>
-        {#each post.data.body as content}
-            <PostElement { content } { text_color }  />
-        {/each}
-	</div>
+
+<LangSelector { translations } />
+<content style="--background-color: { background_color }; --text-color: { text_color }">
+    <div class='container'>
+        <div class='columns'>
+            <div class='column col-10 col-mx-auto cover'>
+                <h1 class='title mt-2'>{ post.data.title[0].text }</h1>
+                <h2 class='subtitle mt-2'>{ post.data.subtitle[0].text }</h2>
+            </div>
+            <div class='column content col-mx-auto col-6 col-lg-8 col-md-10 col-sm-11'>
+                {#each post.data.body as content, i (content)}
+                    <PostElement { content } { text_color }  />
+                {/each}
+            </div>
+        </div>
+    </div>
 </content>
