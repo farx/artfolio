@@ -20,11 +20,8 @@
 	export let posts;
 	import { lang, locales } from "./_settings.js";
 	import Posts from "../components/Posts.svelte"
-	import { afterUpdate } from 'svelte';
 
-	afterUpdate(() => {
-		lang.update((old) => { return {current:locales["en-gb"],translations : [{ url : "blog", code : "sv" }]}})
-	});
+	lang.update((old) => { return {current:locales["en-gb"],translations : [{ url : "blog", code : "sv" }]}})
 
 </script>
 

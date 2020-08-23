@@ -19,13 +19,9 @@
 </style>
 
 <div class="langselector-wrapper">
-<div class="langselector">
-    {#each $lang.translations as translation, i (translation.url)}
-        {#if translation.code == $lang.current.name }
-            <b><a href="/{translation.url}">{ translation.code }</a></b>
-        {:else}
+    <div class="langselector">
+        {#each $lang.translations as translation, i (translation.url)}
             <a href="/{translation.url}">{ translation.code }</a>
-        {/if}
-    {/each}
-</div>
+        {/each}
+    </div>
 </div>

@@ -21,11 +21,8 @@
 	import Posts from '../components/Posts.svelte';
 
 	import { lang, locales } from "./_settings.js";
-	import { afterUpdate } from 'svelte';
 
-	afterUpdate(() => {
-		lang.set({ current : locales["sv-se"],translations : [{ url : "projects", code : "en" }]} )
-	});
+	lang.set({ current : locales["sv-se"],translations : [{ url : "projects", code : "en" }]} )
 
 	export let posts;
 </script>

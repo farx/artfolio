@@ -1,6 +1,7 @@
 <script>
 	import PrismicDOM from 'prismic-dom';
 	import Post from './Post.svelte';
+	import LangSelector from './LangSelector.svelte';
 
 	export let posts;
 

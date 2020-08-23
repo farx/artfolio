@@ -23,9 +23,7 @@
 	import { lang,locales } from "./_settings.js";
 	import { afterUpdate } from 'svelte';
 
-	afterUpdate(() => {
-		lang.set({ current : locales["en-gb"],translations : [{ url : "projekt", code : "sv" }]} )
-	});
+	lang.set({ current : locales["en-gb"],translations : [{ url : "projekt", code : "sv" }]} )
 
 	export let posts;
  console.log(posts)
