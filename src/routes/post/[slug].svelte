@@ -25,29 +25,16 @@
 	import PrismicDOM from 'prismic-dom';
 	import { linkResolver } from '../_linkresolver.js';
     import PostElement from "../../components/PostElement.svelte"
-    import LangSelector from "../../components/LangSelector.svelte"
 
     import { goto } from '@sapper/app';
 
     let text_color = post.data.text_color ? post.data.text_color : '#e6d6c6';
     let background_color = post.data.background_color ? post.data.background_color : '#140b05';
 
-    let translations = [];
-    translations = post.alternate_languages.map(l => { return { url : "post/" + l.uid, code : l.lang.slice(0,2) }})
-    afterUpdate(() => {
-        translations = post.alternate_languages.map(l => { return { url : "post/" + l.uid, code : l.lang.slice(0,2) }})
         lang.set({
             current: locales[post.lang],
             translations : post.alternate_languages.map(l => { return { url : "post/" + l.uid, code : l.lang.slice(0,2) }})
         })
-    });
-	//Prismic.getApi(process.env.SAPPER_APP_PRISMIC_API).then(function(api) { return api.query(
-		 //Prismic.Predicates.at('my.post.uid', slug),
-          //{ lang: $lang.code }
-	//);
-	//}).then(function(response) {
-		//post = response.results[0];
-	//});
 
 </script>
 
@@ -77,7 +64,6 @@
 </svelte:head>
 
 
-<LangSelector { translations } />
 <content style="--background-color: { background_color }; --text-color: { text_color }">
     <div class='container'>
         <div class='columns'>

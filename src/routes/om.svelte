@@ -21,11 +21,7 @@
 
 	export let page;
 
-	import { afterUpdate } from 'svelte';
-
-	afterUpdate(() => {
-		lang.update((old) => { return { current : locales["sv-se"], translations : [{ url : "about", code : "en" }]} })
-	});
+	lang.update((old) => { return { current : locales["sv-se"], translations : [{ url : "about", code : "en" }]} })
 
 
 </script>

@@ -17,14 +17,12 @@
 
 <script>
 	import Page from "../components/PageWithCoverImage.svelte"
+
 	import { lang, locales } from "../routes/_settings.js";
+
 	export let page;
 
-	import { afterUpdate } from 'svelte';
-
-	afterUpdate(() => {
-		lang.update((old) => { return { current : locales["en-gb"], translations : [{ url : "om", code : "sv" }]} })
-	});
+	lang.update((old) => { return { current : locales["en-gb"], translations : [{ url : "om", code : "sv" }]} })
 
 
 </script>

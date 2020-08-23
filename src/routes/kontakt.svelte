@@ -19,13 +19,10 @@
 	export let page;
 
 	import { lang, locales } from "../routes/_settings.js";
-	import { afterUpdate } from 'svelte';
 
 	import PageWithImage from "../components/PageWithImage.svelte"
 
-	afterUpdate(() => {
-		lang.update((old) => { return { current : locales["sv-se"], translations : [{ url : "contact", code : "en" }]} })
-	});
+	lang.update((old) => { return { current : locales["sv-se"], translations : [{ url : "contact", code : "en" }]} })
 
 </script>
 
