@@ -23,11 +23,8 @@ import PageWithImage from "../components/PageWithImage.svelte"
 
 import { afterUpdate } from 'svelte';
 
-let translations = [];
-translations = [{ url : "kontakt", code : "sv" }];
 afterUpdate(() => {
 	lang.update((old) => { return { current : locales["en-gb"], translations : [{ url : "kontakt", code : "sv" }]} })
-	translations = [{ url : "kontakt", code : "sv" }];
 });
 
 </script>
@@ -36,4 +33,4 @@ afterUpdate(() => {
 <title>{ page.data.title[0].text }</title>
 </svelte:head>
 
-<PageWithImage { page } { translations }  />
+<PageWithImage { page } />

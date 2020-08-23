@@ -18,17 +18,13 @@
 <script>
 	import Page from "../components/PageWithCoverImage.svelte"
 	import { lang, locales } from "../routes/_settings.js";
-	import LangSelector from "../components/LangSelector.svelte"
 
 	export let page;
 
 	import { afterUpdate } from 'svelte';
 
-	let translations = [];
-	translations = [{ url : "about", code : "en" }];
 	afterUpdate(() => {
 		lang.update((old) => { return { current : locales["sv-se"], translations : [{ url : "about", code : "en" }]} })
-		translations = [{ url : "about", code : "en" }];
 	});
 
 
@@ -38,4 +34,4 @@
 	<title>{ page.data.title[0].text }</title>
 </svelte:head>
 
-<Page { page } { translations } />
+<Page { page } />

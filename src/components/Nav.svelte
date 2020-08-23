@@ -4,6 +4,7 @@
     import LangSelector from "./LangSelector.svelte"
     import { lang } from "../routes/_settings.js";
 
+
 </script>
 
 <style>
@@ -79,4 +80,5 @@
             <a class="btn btn-link col-6" aria-current="{segment === 'contact' ? 'page' : undefined}" href="/{ $lang.current.pages.contact.name }">{ $lang.current.pages.contact.name }</a>
         </section>
     </header>
+<LangSelector/>
 </div>

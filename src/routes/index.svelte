@@ -22,6 +22,12 @@
 	export let subtitle;
 	export let splash;
 
+	import { lang,locales } from "./_settings.js";
+	import { afterUpdate } from 'svelte';
+
+	afterUpdate(() => {
+		lang.update(old => { return { current : old.current, translations: []} } )
+	});
 
 </script>
 

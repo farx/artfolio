@@ -1,10 +1,8 @@
 <script>
-	import LangSelector from "./LangSelector.svelte"
 	import PrismicDOM from 'prismic-dom';
 	import { linkResolver } from '../routes/_linkresolver.js';
 
     export let page;
-    export let translations;
 
 </script>
 
@@ -35,7 +33,6 @@
 	}
 </style>
 
-<LangSelector { translations } />
 <content style="--image-url: url({ page.data.splash ? page.data.splash.url : '' }); --background-color: { page.data.background_color ? page.data.background_color : '#140b05' }; --text-color: { page.data.text_color ? page.data.text_color :  '#e6d6c6' }">
     <div class='cover container'>
         <div class='columns'>

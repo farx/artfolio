@@ -22,11 +22,8 @@
 
 	import { afterUpdate } from 'svelte';
 
-	let translations = [];
-	translations = [{ url : "om", code : "sv" }];
 	afterUpdate(() => {
 		lang.update((old) => { return { current : locales["en-gb"], translations : [{ url : "om", code : "sv" }]} })
-		translations = [{ url : "om", code : "sv" }];
 	});
 
 
@@ -38,4 +35,4 @@
 </svelte:head>
 
 
-<Page { page } { translations } />
+<Page { page } />

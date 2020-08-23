@@ -23,11 +23,8 @@
 	import { lang, locales } from "./_settings.js";
 	import { afterUpdate } from 'svelte';
 
-	let translations = [];
-	translations = [{ url : "projects", code : "en" }];
 	afterUpdate(() => {
 		lang.set({ current : locales["sv-se"],translations : [{ url : "projects", code : "en" }]} )
-		translations = [{ url : "projects", code : "en" }];
 	});
 
 	export let posts;
@@ -37,4 +34,4 @@
 	<title>Projekt</title>
 </svelte:head>
 
-<Posts { posts } { translations }/>
+<Posts { posts }/>

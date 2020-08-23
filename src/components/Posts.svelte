@@ -1,10 +1,8 @@
 <script>
 	import PrismicDOM from 'prismic-dom';
 	import Post from './Post.svelte';
-	import LangSelector from "./LangSelector.svelte"
 
 	export let posts;
-	export let translations;
 
 	import { lang } from "../routes/_settings.js";
 
@@ -17,7 +15,6 @@
 	}
 </style>
 
-<LangSelector { translations } />
 <content>
     <div class='container'>
         <div class='columns'>

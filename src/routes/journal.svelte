@@ -22,11 +22,8 @@
 	import Posts from "../components/Posts.svelte"
 	import { afterUpdate } from 'svelte';
 
-	let translations = [];
-	translations = [{ url : "blog", code : "sv" }];
 	afterUpdate(() => {
 		lang.update((old) => { return {current:locales["en-gb"],translations : [{ url : "blog", code : "sv" }]}})
-		translations = [{ url : "blog", code : "sv" }];
 	});
 
 </script>
@@ -35,4 +32,4 @@
 	<title>Journal</title>
 </svelte:head>
 
-<Posts { posts } { translations }/>
+<Posts { posts } />
