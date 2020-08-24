@@ -26,7 +26,6 @@
 	lang.set({ current : locales["en-gb"],translations : [{ url : "projekt", code : "sv" }]} )
 
 	export let posts;
- console.log(posts)
 </script>
 
 <svelte:head>
