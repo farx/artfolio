@@ -48,9 +48,11 @@
         text-transform: uppercase;
         font-size: 0.5em;
         letter-spacing: .3em;
-        line-height: .1em;
         color: var(--image-text-color);
+    }
 
+    :global(.alt-text > p) {
+        margin-bottom: 1em;
     }
 
     iframe {

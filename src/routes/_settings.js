@@ -6,7 +6,7 @@ export const locales = {
         name : "sv",
         pages : {
             projects : { name : "projekt", no_posts_blurb: "inga projekt publicerade ännu..." },
-            journal : { name : "blog", no_posts_blurb : "inga publika bloginlägg än..." },
+            journal : { name : "blogg", no_posts_blurb : "inga publika bloginlägg än..." },
             about : { name : "om" },
             contact : { name : "kontakt"}
         },
