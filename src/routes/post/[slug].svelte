@@ -14,7 +14,7 @@
         })
         .then((response) => {
             let post = response.results[0];
-            return { post, lang };
+            return { post };
         });
 	}
 </script>
@@ -31,10 +31,11 @@
     let text_color = post.data.text_color ? post.data.text_color : '#e6d6c6';
     let background_color = post.data.background_color ? post.data.background_color : '#140b05';
 
+    afterUpdate(() => {
         lang.set({
             current: locales[post.lang],
             translations : post.alternate_languages.map(l => { return { url : "post/" + l.uid, code : l.lang.slice(0,2) }})
-        })
+    })})
 
 </script>
 
