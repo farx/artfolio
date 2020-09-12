@@ -59,6 +59,15 @@
 	 min-height: 40vh;
  }
 
+@media (max-width: 600px) {
+    .title {
+        font-size: 3em;
+    }
+   :global(.cover h2) {
+        font-size: 1.2rem;
+    }
+}
+
 </style>
 <svelte:head>
 	<title>{post.data.title[0].text}</title>
@@ -70,7 +79,11 @@
         <div class='columns'>
             <div class='column col-10 col-mx-auto cover'>
                 <h1 class='title mt-2'>{ post.data.title[0].text }</h1>
-                <h2 class='subtitle mt-2'>{ post.data.subtitle[0].text }</h2>
+                {#if post.data.description.length > 0  }
+                    {@html PrismicDOM.RichText.asHtml(post.data.description, linkResolver) }
+                {:else}
+                    <h2 class='subtitle mt-2'>{ post.data.subtitle[0].text }</h2>
+                {/if}
             </div>
             <div class='column content col-mx-auto col-6 col-lg-8 col-md-10 col-sm-11'>
                 {#each post.data.body as content, i (content)}
