@@ -75,6 +75,8 @@
 
 <svelte:head>
 	<title>{ title }</title>
+	<meta property="og:image" content="{ splash }" />
+	<meta property="og:description" content="{ title } - { subtitle }" />
 </svelte:head>
 
 <content>
