@@ -71,6 +71,12 @@
 </style>
 <svelte:head>
 	<title>{post.data.title[0].text}</title>
+	<meta property="og:image" content="{ post.data.preview_photo_1.url }" />
+    {#if post.data.description.length > 0  }
+        <meta property="og:description" content="{ post.data.description[0].text }" />
+    {:else}
+        <meta property="og:description" content="{ post.data.subtitle[0].text }" />
+    {/if}
 </svelte:head>
 
 
