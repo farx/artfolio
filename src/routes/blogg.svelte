@@ -26,7 +26,7 @@
 </script>
 
 <svelte:head>
-	<title>Blog</title>
+	<title>Blogg</title>
 </svelte:head>
 
 <Posts { posts } />
