@@ -5,7 +5,7 @@
 	export async function preload(page, session) {
 		return Prismic.getApi(process.env.SAPPER_APP_PRISMIC_API).then(function(api) {  return api.query(
 			[ Prismic.Predicates.at('document.type', 'post'),
-			  Prismic.Predicates.at('my.post.post_type', 'journal') ],
+			  Prismic.Predicates.at('my.post.post_type', 'journal entry') ],
 			{ fetch : [  'post.title', 'post.date', 'post.preview_photo_1', 'post.preview_photo_2' ],
 			  orderings : '[my.post.order_score desc]',
 			  lang : 'en-gb' }
