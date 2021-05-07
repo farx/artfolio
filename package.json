@@ -16,7 +16,7 @@
     "dotenv": "^8.2.0",
     "polka": "next",
     "prismic-dom": "^2.2.3",
-    "prismic-javascript": "^3.0.0",
+    "prismic-javascript": "^3.0.2",
     "sapper-environment": "^1.0.1",
     "sirv": "^0.4.0"
   },
