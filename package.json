@@ -18,7 +18,7 @@
     "prismic-dom": "^2.2.3",
     "prismic-javascript": "^3.0.0",
     "sapper-environment": "^1.0.1",
-    "sirv": "^0.4.0"
+    "sirv": "^3.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
